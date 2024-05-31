@@ -34,7 +34,12 @@ body {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+
 
 .header {
     position: relative;
@@ -45,6 +50,9 @@ body {
     align-items: center;
     border-radius: 10px;
     padding: 0px;
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 @keyframes flicker {
@@ -97,7 +105,7 @@ body {
 }
 
 .login {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: (255, 255, 255, 0.3);
     padding: 0px;
     border-radius: 10px;
     margin: 0 auto;
@@ -105,6 +113,35 @@ body {
     width: 100%;
     max-width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+}
+
+.main:hover {
+    border: 5px solid;
+    animation: rainbow-border 1s linear infinite;
+}
+@keyframes rainbow-border {
+    0% {
+        border-color: red;
+    }
+    16.67% {
+        border-color: orange;
+    }
+    33.33% {
+        border-color: yellow;
+    }
+    50% {
+        border-color: green;
+    }
+    66.67% {
+        border-color: blue;
+    }
+    83.33% {
+        border-color: indigo;
+    }
+    100% {
+        border-color: violet;
+    }
 }
 
 .account, .password {
@@ -159,8 +196,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-
 
 
 
