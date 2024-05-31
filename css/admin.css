@@ -1,0 +1,114 @@
+.header{
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    background-color: aqua;
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    text-align: center;
+    align-items:center ;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
+.head_t{
+    font-size: 40px;
+    margin: none;
+    cursor: pointer;
+}
+
+.profile{
+    cursor: pointer;
+}
+
+.table{
+    background-color: black;
+    height: 2000px;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+
+}
+
+.white{
+    background-color: #fff;
+    height: 100%;
+}
+
+body{
+    margin: 0;
+}
+
+.pro{
+    font-size: 20px;
+    margin-top: 100px;
+    display:grid;
+    color: black;
+    grid-template-rows: 40px 40px 40px 80px 80px;
+    vertical-align: middle;
+    align-items: center;
+    text-align: center;
+}
+
+.name{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+
+}
+.aname{
+    margin-left: 10px;
+    text-align: center;
+}
+.main{
+    background: linear-gradient(135deg, #1fb3ab, #050fd3);
+}
+
+.course{
+    margin-top : 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.a{
+    height: 60px;
+    background-color: rgb(162, 221, 24);
+    margin: 2px;
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    vertical-align: middle;
+    align-items: center;
+    font-weight: bold;
+}
+.a:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 10px rgba(222, 242, 6, 0.4),
+        0 0 20px rgba(222, 242, 6, 0.3),
+        0 0 30px rgba(222, 242, 6, 0.2),
+        0 0 40px rgba(222, 242, 6, 0.1);
+}
+
+
+
+.abtn{
+    cursor: pointer;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border:none;
+    height: 100%;
+    font-weight: bold;
+}
+
+
+.edit{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+button{
+    cursor: pointer;
+}
