@@ -143,3 +143,25 @@ body{
 button{
     cursor: pointer;
 }
+
+
+.notifications{
+    position: relative;
+    margin-right: 20px;
+}
+
+.number-notifications{
+    position: absolute;
+    top:-10px;
+    right: -10px;
+    background-color: red;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    border-radius: 90%;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    visibility: hidden;
+}

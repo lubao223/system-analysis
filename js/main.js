@@ -22,13 +22,53 @@ document.addEventListener("DOMContentLoaded", function() {
     if (event.key === "Enter") {
         login.click();
       }}
+
+    
 )});
 
 document.addEventListener('mousemove', function(event) {
     const mouseX = event.clientX / window.innerWidth;
     const mouseY = event.clientY / window.innerHeight;
     const angle = mouseX * 360;
-    document.querySelector(".table").style.background = `linear-gradient(${angle}deg, #afbedb, #6f9eef)`});
+    document.querySelector(".table").style.background = `linear-gradient(${angle}deg, #afbedb, #6f9eef)`
+
+
+    
+    setTimeout(function() {
+        const raindrops = document.querySelectorAll(".raindrop");
+        raindrops.forEach(function(raindrop) {
+            raindrop.style.visibility = "visible";
+        });
+    }, 5000); 
+
+});
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+        
+        function randomPosition() {
+            return Math.random() * 100; 
+        }
+    
+        function randomDelay() {
+            return Math.random() * 5; 
+        }
+    
+  
+        function createRaindrop() {
+            const raindrop = document.createElement("div");
+            raindrop.classList.add("raindrop");
+            raindrop.style.left = randomPosition() + "%";
+            raindrop.style.animationDelay = randomDelay() + "s";
+            document.querySelector(".table").appendChild(raindrop);
+        }
+    
+        
+        const initialRaindrops = 40; 
+        for (let i = 0; i < initialRaindrops; i++) {
+        createRaindrop();
+    }  
+    
+    });
+    

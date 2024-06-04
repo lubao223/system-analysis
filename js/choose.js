@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             course.splice(index, 1);
                         }
                         renderCourses();
+                        update(choosed.length)
                     }}
                     else {
                         alert("餘額不足");
@@ -93,4 +94,15 @@ document.addEventListener("DOMContentLoaded", () => {
     head_tBtn.addEventListener("click", () => {
         renderCourses();
     });
+
+    const number_not = document.querySelector(".number-notifications");
+
+    function update(x) {
+        if (x > 0) {
+            number_not.style.visibility = "visible";
+            number_not.innerHTML = x;
+        } else {
+            number_not.style.visibility = "hidden";
+        }
+    }
 });
