@@ -12,6 +12,7 @@ body {
 
 
 .table {
+    position: relative;
     background: linear-gradient(135deg, #afbedb, #6f9eef);
     min-height: 100vh;
     display: grid;
@@ -19,6 +20,7 @@ body {
     align-items: center;
     justify-items: center;
     padding: 20px;
+    overflow: hidden;
 }
 
 .white {
@@ -32,19 +34,27 @@ body {
     align-items: center;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+
 
 .header {
     position: relative;
     height: 100px;
-    background-color: rgb(196, 236, 136);
+    background-color: rgba(173, 216, 230, 1);
     display: grid;
     grid-template-columns: 1fr 7fr 1fr;
     align-items: center;
     border-radius: 10px;
     padding: 0px;
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 @keyframes flicker {
@@ -79,16 +89,16 @@ body {
 
 .header_text {
     font-family: 'Pacifico', cursive;
-    font-size: 70px;
+    font-size: 60px;
     text-align: center;
     color: #fff;
     text-shadow: 0 0 5px #fff,
                  0 0 10px #fff,
-                 0 0 20px rgb(36, 96, 248),
-                 0 0 30px rgb(36, 96, 248),
-                 0 0 40px rgb(36, 96, 248),
-                 0 0 50px rgb(36, 96, 248),
-                 0 0 60px rgb(36, 96, 248);
+                 0 0 20px rgb(0, 255, 0, 1),
+                 0 0 30px rgb(0, 255, 0, 1),
+                 0 0 40px rgb(0, 255, 0, 1),
+                 0 0 50px rgb(0, 255, 0, 1),
+                 0 0 60px rgb(0, 255, 0, 1);
     animation: flicker 5s infinite alternate;
 }
 
@@ -97,16 +107,69 @@ body {
 }
 
 .login {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: (255, 255, 255, 0.3);
     padding: 0px;
+    padding-top: 2px;
     border-radius: 10px;
     margin: 0 auto;
-    margin-top : 5px;
+    margin-top : 20px;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
 }
 
+.main:hover {
+    border: 5px solid;
+    animation: cold-border 3s linear infinite;
+}
+@keyframes rainbow-border {
+    0% {
+        border-color: red;
+    }
+    16.67% {
+        border-color: orange;
+    }
+    33.33% {
+        border-color: yellow;
+    }
+    50% {
+        border-color: green;
+    }
+    66.67% {
+        border-color: blue;
+    }
+    83.33% {
+        border-color: indigo;
+    }
+    100% {
+        border-color: violet;
+    }
+}
+
+@keyframes cold-border {
+    0% {
+        border-color: #4682B4; /* 深藍色 */
+    }
+    16.67% {
+        border-color: #87CEEB; /* 淺藍色 */
+    }
+    33.33% {
+        border-color: #00BFFF; /* 深藍色 */
+    }
+    50% {
+        border-color: #6A5ACD; /* 靛藍色 */
+    }
+    66.67% {
+        border-color: #00FFFF; /* 青色 */
+    }
+    83.33% {
+        border-color: #483D8B; /* 深紫色 */
+    }
+    100% {
+        border-color: #800080; /* 紫色 */
+    }
+}
 .account, .password {
     display: flex;
     font-size: 20px;
@@ -116,7 +179,7 @@ body {
 
 .box {
     width: 100%;
-    max-width: 250px;
+    max-width: 200px;
     padding: 10px;
     font-size: 20px;
     border: 1px solid #ccc;
@@ -162,6 +225,17 @@ body {
 
 
 
+@keyframes rain {
+    0% { top: -10%; opacity: 0; }
+    50% { opacity: 0.7; }
+    100% { top:200%; opacity: 0; }
+}
 
-
-
+.raindrop {
+    position: fixed;
+    width: 7px;
+    height: 10px;
+    background: #082dff;
+    animation: rain 1.5s linear infinite;
+    visibility: hidden;
+}

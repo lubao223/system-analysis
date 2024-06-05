@@ -53,6 +53,7 @@ body{
 .name{
     display: grid;
     grid-template-columns: 100px 1fr;
+    margin-bottom: 20px;
 
 }
 .aname{
@@ -71,9 +72,9 @@ body{
 
 .a{
     height: 60px;
-    background-color: rgb(162, 221, 24);
     margin: 2px;
     display: grid;
+    background-color: white;
     grid-template-columns: 5fr 2fr;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 20px;
@@ -90,6 +91,7 @@ body{
         0 0 20px rgba(222, 242, 6, 0.3),
         0 0 30px rgba(222, 242, 6, 0.2),
         0 0 40px rgba(222, 242, 6, 0.1);
+    background-color: rgb(255, 255, 224);
 }
 
 
@@ -111,4 +113,78 @@ body{
 
 button{
     cursor: pointer;
+}
+
+.btn {
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0px 5px;
+}
+
+.btn:hover {
+    background-color: #1c86ee;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+}
+
+.clear{
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 5px 5px;
+}
+
+.check{
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 5px 5px;
+}
+
+.clear:hover {
+    background-color: #1c86ee;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+}
+
+.check:hover {
+    background-color: #1c86ee;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+}
+
+.add {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #1e90ff;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin:10px 2px;
+}
+
+.add2{
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #1e90ff;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin:10px 2px;        
+    
 }

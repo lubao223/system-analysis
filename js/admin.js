@@ -86,4 +86,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     renderCourses()
+
+    const searchInput = document.getElementById("searchInput");
+    const sbtn = document.getElementById("searchBtn");
+    let newCourseList = [];
+
+    searchInput.addEventListener("keypress",(value)=>{
+        if(value.key == 'Enter'){
+            sbtn.click()
+        }
+    })
+
+    sbtn.addEventListener("click", function() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    
+
+    if (searchTerm !== "") {
+        searchInput.value = ''
+        newCourseList = [];
+        course.forEach((courseName) => {
+            if (courseName.toLowerCase().includes(searchTerm)) {
+                newCourseList.push(courseName);
+            }
+        });
+
+        renderCourses2();
+    }else{
+        renderCourses()
+    }
+    });
+
+    function renderCourses2() {
+    courseContainer.innerHTML = "";
+    newCourseList.forEach((newCourseList) => {
+        courseContainer.insertAdjacentHTML("beforeend", `
+        <div class="a">
+        <div class="aname">${newCourseList}</div>
+        
+        <button class="abtn">刪除</button>
+    </div>
+        `);
+    });
+}
 });
+
+
+

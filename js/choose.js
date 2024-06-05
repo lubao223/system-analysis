@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             course.splice(index, 1);
                         }
                         renderCourses();
+                        update(choosed.length)
                     }}
                     else {
                         alert("餘額不足");
@@ -93,4 +94,58 @@ document.addEventListener("DOMContentLoaded", () => {
     head_tBtn.addEventListener("click", () => {
         renderCourses();
     });
+
+    const number_not = document.querySelector(".number-notifications");
+
+    function update(x) {
+        if (x > 0) {
+            number_not.style.visibility = "visible";
+            number_not.innerHTML = x;
+        } else {
+            number_not.style.visibility = "hidden";
+        }
+    }
+
+    const searchInput = document.getElementById("searchInput");
+    const sbtn = document.getElementById("searchBtn");
+    let newCourseList = [];
+
+    searchInput.addEventListener("keypress",(value)=>{
+        if(value.key == 'Enter'){
+            sbtn.click()
+        }
+    })
+
+    sbtn.addEventListener("click", function() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    
+
+    if (searchTerm !== "") {
+        searchInput.value = ''
+        newCourseList = [];
+        course.forEach((courseName) => {
+            if (courseName.toLowerCase().includes(searchTerm)) {
+                newCourseList.push(courseName);
+            }
+        });
+
+        renderCourses2();
+    }else{
+        renderCourses()
+    }
+    });
+
+    function renderCourses2() {
+    courseContainer.innerHTML = "";
+    newCourseList.forEach((newCourseList) => {
+        courseContainer.insertAdjacentHTML("beforeend", `
+        <div class="a">
+        <div class="aname">${newCourseList}</div>
+        <input type="number" class="anumber" width="40px">
+        <button class="abtn">競標</button>
+    </div>
+        `);
+    });
+}
 });
+
