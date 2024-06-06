@@ -39,13 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 const inputNumber = parentDiv.querySelector('.anumber').value;
                 const inputcourse = parentDiv.querySelector('.aname').textContent;
                 if (inputNumber <= 0) {
-                    alert("請選擇正值");
+                    //alert("請選擇正值");
+                    openEventModal("請選擇大於0的正值", "確定")
                 } else {
                     if (inputNumber <= Number(point)) {
                         const result = confirm(`確定花費${inputNumber} 選擇 ${inputcourse}?`);
                         if(result){
                         let decrease = Number(inputNumber);
-                        alert(`競標成功 你花了${inputNumber}點 競標了${inputcourse} 還剩下${point - decrease}點`);
+                        openEventModal(`競標成功 你花了${inputNumber}點 競標了${inputcourse} \n 還剩下${point - decrease}點`, "確定")
+                        //alert(`競標成功 你花了${inputNumber}點 競標了${inputcourse} 還剩下${point - decrease}點`);
                         parentDiv.querySelector('.anumber').value = "";
                         point -= decrease; 
                         document.querySelector(".ncost").textContent = point; 
@@ -55,9 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             course.splice(index, 1);
                         }
                         renderCourses();
+                        update(choosed.length)
                     }}
                     else {
-                        alert("餘額不足");
+                        openEventModal("餘額不足", "確定")
                         parentDiv.querySelector('.anumber').value = "";
                     }
                 }
@@ -92,5 +95,102 @@ document.addEventListener("DOMContentLoaded", () => {
     const head_tBtn = document.querySelector(".head_t");
     head_tBtn.addEventListener("click", () => {
         renderCourses();
+    });
+
+    const number_not = document.querySelector(".number-notifications");
+
+    function update(x) {
+        if (x > 0) {
+            number_not.style.visibility = "visible";
+            number_not.innerHTML = x;
+        } else {
+            number_not.style.visibility = "hidden";
+        }
+    }
+
+    const searchInput = document.getElementById("searchInput");
+    const sbtn = document.getElementById("searchBtn");
+    let newCourseList = [];
+
+    searchInput.addEventListener("keypress",(value)=>{
+        if(value.key == 'Enter'){
+            sbtn.click()
+        }
+    })
+
+    sbtn.addEventListener("click", function() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    
+
+    if (searchTerm !== "") {
+        searchInput.value = ''
+        newCourseList = [];
+        course.forEach((courseName) => {
+            if (courseName.toLowerCase().includes(searchTerm)) {
+                newCourseList.push(courseName);
+            }
+        });
+        if(newCourseList.length != 0){
+        renderCourses2();}else{
+            openEventModal('查無課程', true)
+            renderCourses()
+        }
+    }else{
+        renderCourses()
+    }
+    });
+
+    function renderCourses2() {
+    courseContainer.innerHTML = "";
+    newCourseList.forEach((newCourseList) => {
+        courseContainer.insertAdjacentHTML("beforeend", `
+        <div class="a">
+        <div class="aname">${newCourseList}</div>
+        <input type="number" class="anumber" width="40px">
+        <button class="abtn">競標</button>
+    </div>
+        `);
+    });
+}
+});
+
+function openEventModal(message, hasButton) {
+    const modal = document.getElementById("eventModal");
+    const messageElement = document.getElementById("eventMessage");
+    const confirmBtn = document.getElementById("confirmBtn");
+    
+    messageElement.textContent = message; 
+
+    if (hasButton) {
+        confirmBtn.style.display = "block";
+    } else {
+        confirmBtn.style.display = "none"; 
+    }
+
+    modal.style.display = "block"; 
+}
+
+
+function closeEventModal() {
+    const modal = document.getElementById("eventModal");
+    modal.style.display = "none"; 
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+ 
+    const closeBtn = document.querySelector(".close");
+    closeBtn.addEventListener("click", closeEventModal);
+
+   
+    const confirmBtn = document.getElementById("confirmBtn");
+    confirmBtn.addEventListener("click", closeEventModal);
+
+ 
+    const modal = document.getElementById("eventModal");
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            closeEventModal();
+        }
     });
 });

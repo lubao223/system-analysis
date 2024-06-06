@@ -37,14 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const parentDiv = target.parentNode;
             if (parentDiv) {
                 const inputcourse = parentDiv.querySelector('.aname').textContent;
-                const result = confirm(`您確定要刪除 >${inputcourse}<？`);
+                const result = confirm(`您確定要刪除 ${inputcourse}？`);
                 if(result){
                 
                 const index = course.indexOf(inputcourse);
                         if (index !== -1) {
                             course.splice(index, 1);
                         }
-                alert(`刪除成功 您刪除了>${inputcourse}<`)}
+                //alert(`刪除成功 您刪除了>${inputcourse}<`)
+                openEventModal(`刪除成功 您刪除了 ${inputcourse}`, "確定")
+            
+            }
             }
         }
         renderCourses()
@@ -62,11 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
         course.push(add.value)
         
         renderCourses()
-        alert(`新增成功 您新增了${add.value} \n 目前共有${course.length}堂課程`)
+        openEventModal(`新增成功 您新增了${add.value} \n 目前共有${course.length}堂課程`, "確定")
+        //alert(`新增成功 您新增了${add.value} \n 目前共有${course.length}堂課程`)
         add.value = ""
     }
         else{
-            alert("不可新增空字串")
+            openEventModal("不可新增空字串", "確定")
+            //alert("不可新增空字串")
         }
     })
 
@@ -86,4 +91,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     renderCourses()
+
+    const searchInput = document.getElementById("searchInput");
+    const sbtn = document.getElementById("searchBtn");
+    let newCourseList = [];
+
+    searchInput.addEventListener("keypress",(value)=>{
+        if(value.key == 'Enter'){
+            sbtn.click()
+        }
+    })
+
+    sbtn.addEventListener("click", function() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    
+
+    if (searchTerm !== "") {
+        searchInput.value = ''
+        newCourseList = [];
+        course.forEach((courseName) => {
+            if (courseName.toLowerCase().includes(searchTerm)) {
+                newCourseList.push(courseName);
+            }
+        });
+
+        if(newCourseList.length != 0){
+            renderCourses2();}else{
+                openEventModal('查無課程', true)
+                renderCourses()
+            }
+    }else{
+        renderCourses()
+    }
+    });
+
+    function renderCourses2() {
+    courseContainer.innerHTML = "";
+    newCourseList.forEach((newCourseList) => {
+        courseContainer.insertAdjacentHTML("beforeend", `
+        <div class="a">
+        <div class="aname">${newCourseList}</div>
+        
+        <button class="abtn">刪除</button>
+    </div>
+        `);
+    });
+}
+function openEventModal(message, hasButton) {
+    const modal = document.getElementById("eventModal");
+    const messageElement = document.getElementById("eventMessage");
+    const confirmBtn = document.getElementById("confirmBtn");
+    
+    messageElement.textContent = message;
+
+    if (hasButton) {
+        confirmBtn.style.display = "block"; 
+    } else {
+        confirmBtn.style.display = "none"; 
+    }
+
+    modal.style.display = "block"; 
+}
+
+function closeEventModal() {
+    const modal = document.getElementById("eventModal");
+    modal.style.display = "none"; 
+}
+
+
+    const closeBtn = document.querySelector(".close");
+    closeBtn.addEventListener("click", closeEventModal);
+
+
+    const confirmBtn = document.getElementById("confirmBtn");
+    confirmBtn.addEventListener("click", closeEventModal);
+
+
+    const modal = document.getElementById("eventModal");
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            closeEventModal();
+        }
+    });
+;
 });
+
+
+
